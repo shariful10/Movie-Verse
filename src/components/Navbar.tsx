@@ -22,6 +22,18 @@ const Navbar = () => {
 				>
 					<h2 className="text-[30px]">Movie Verse</h2>
 				</Link>
+				<form
+					onSubmit={handleSubmit}
+					className="space-x-4 hidden md:block"
+				>
+					<input
+						className="bg-secondary px-4 py-2 outline-none placeholder:text-textColor"
+						type="text"
+						value={input}
+						placeholder="Search Movies..."
+						onChange={(e) => setInput(e.target.value)}
+					/>
+				</form>
 			</div>
 		</div>
 	);
