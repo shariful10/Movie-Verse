@@ -66,20 +66,23 @@ const MobNav = ({ input, setInput, handleSubmit }: PropsType) => {
 					isOpen ? "block" : "hidden"
 				}`}
 			>
-				<IoMdClose
-					size={28}
-					onClick={() => setIsOpen(false)}
-					className="absolute top-0 right-0 m-2 mt-7"
-				/>
-				<Link
-					href={"/discover/now_playing"}
-					className="w-fit"
-					onClick={() => setIsOpen(false)}
-				>
-					<div className="sidebarTitle text-[28px] text-center">
-						MovieVerse
-					</div>
-				</Link>
+				<div className="sticky top-0 bg-primary py-4 w-full">
+					<IoMdClose
+						size={28}
+						onClick={() => setIsOpen(false)}
+						className="absolute top-0 right-0 m-2 mt-7"
+					/>
+					<Link
+						href={"/discover/now_playing"}
+						className="w-fit"
+						onClick={() => setIsOpen(false)}
+					>
+						<div className="font-semibold text-[28px] text-center">
+							MovieVerse
+						</div>
+					</Link>
+				</div>
+				<div className=""></div>
 			</div>
 		</>
 	);
