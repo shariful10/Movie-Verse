@@ -24,15 +24,16 @@ const Navbar = () => {
 				</Link>
 				<form
 					onSubmit={handleSubmit}
-					className="space-x-4 hidden md:block"
+					className="space-x-2 hidden md:block"
 				>
 					<input
-						className="bg-secondary px-4 py-2 outline-none placeholder:text-textColor"
+						className="bg-secondary px-4 py-2 outline-none placeholder:text-textColor rounded-l-[5px]"
 						type="text"
 						value={input}
 						placeholder="Search Movies..."
 						onChange={(e) => setInput(e.target.value)}
 					/>
+				 	<button className="bg-secondary text-textColor py-2 px-4 hover:bg-textColor hover:text-white rounded-r-[5px]">Search</button>
 				</form>
 			</div>
 		</div>
