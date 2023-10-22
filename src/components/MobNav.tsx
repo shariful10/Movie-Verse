@@ -46,11 +46,17 @@ const MobNav = ({ input, setInput, handleSubmit }: PropsType) => {
 				<div onClick={() => setIsOpen(true)}>
 					<AiOutlineMenu size={30} />
 				</div>
-				<div className="space-x-4">
+				<div className="space-x-1">
 					<input
-						className="bg-secondary px-4 py-2 outline-none placeholder:text-textColor text-sm w-[180px]"
 						type="text"
+						value={input}
+						placeholder="Search Movies..."
+						onChange={(e) => setInput(e.target.value)}
+						className="bg-secondary px-4 py-2 outline-none placeholder:text-textColor text-sm w-[180px] rounded-l-[5px]"
 					/>
+					<button className="bg-secondary text-sm text-textColor py-2 px-4 hover:bg-textColor hover:text-white rounded-r-[5px]">
+						Search
+					</button>
 				</div>
 			</form>
 		</>
