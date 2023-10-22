@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import MobNav from "./MobNav";
 
 const Navbar = () => {
 	const [input, setInput] = useState("");
@@ -33,8 +34,15 @@ const Navbar = () => {
 						placeholder="Search Movies..."
 						onChange={(e) => setInput(e.target.value)}
 					/>
-				 	<button className="bg-secondary text-textColor py-2 px-4 hover:bg-textColor hover:text-white rounded-r-[5px]">Search</button>
+					<button className="bg-secondary text-textColor py-2 px-4 hover:bg-textColor hover:text-white rounded-r-[5px]">
+						Search
+					</button>
 				</form>
+				<MobNav
+					input={input}
+					setInput={setInput}
+					handleSubmit={handleSubmit}
+				/>
 			</div>
 		</div>
 	);
