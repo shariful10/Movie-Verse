@@ -25,7 +25,7 @@ const MobNav = ({ input, setInput, handleSubmit }: PropsType) => {
 				`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`
 			)
 			.then(({ data }) => {
-				setGenres(data.geners);
+				setGenres(data.genres);
 			})
 			.catch((err) => console.log(err));
 	}, []);
