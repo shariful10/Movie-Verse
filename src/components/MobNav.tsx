@@ -4,6 +4,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { API_KEY, BASE_URL } from "@/utils/const";
 import { useParams, useSearchParams } from "next/navigation";
 import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
+import Link from "next/link";
 
 interface PropsType {
 	input: string;
@@ -59,6 +60,27 @@ const MobNav = ({ input, setInput, handleSubmit }: PropsType) => {
 					</button>
 				</div>
 			</form>
+			{/* <==<<=== Full Screen Nav ===>>==> */}
+			<div
+				className={`min-h-[100vh] max-h-[100vh] w-full bg-primary fixed left-0 top-0 z-10 overflow-scroll ${
+					isOpen ? "block" : "hidden"
+				}`}
+			>
+				<IoMdClose
+					size={28}
+					onClick={() => setIsOpen(false)}
+					className="absolute top-0 right-0 m-2 mt-7"
+				/>
+				<Link
+					href={"/discover/now_playing"}
+					className="w-fit"
+					onClick={() => setIsOpen(false)}
+				>
+					<div className="sidebarTitle text-[28px] text-center">
+						MovieVerse
+					</div>
+				</Link>
+			</div>
 		</>
 	);
 };

@@ -21,7 +21,7 @@ const Navbar = () => {
 					className="hidden md:block"
 					href={"/discover/now_playing"}
 				>
-					<h2 className="text-[30px]">Movie Verse</h2>
+					<h2 className="text-[30px]">MovieVerse</h2>
 				</Link>
 				<form
 					onSubmit={handleSubmit}
