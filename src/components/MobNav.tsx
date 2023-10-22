@@ -1,5 +1,7 @@
-import { API_KEY, BASE_URL } from "@/utils/const";
 import axios from "axios";
+import { IoMdClose } from "react-icons/io";
+import { AiOutlineMenu } from "react-icons/ai";
+import { API_KEY, BASE_URL } from "@/utils/const";
 import { useParams, useSearchParams } from "next/navigation";
 import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 
@@ -32,10 +34,21 @@ const MobNav = ({ input, setInput, handleSubmit }: PropsType) => {
 			setSelectedGenre(searchParams.get("genere")!);
 			return;
 		}
-		setSelectedGenre(params.id.toString())
+		setSelectedGenre(params.id.toString());
 	}, [params.id, searchParams]);
 
-	return <div>MobNav</div>;
+	return (
+		<>
+			<form
+				onSubmit={handleSubmit}
+				className="md:hidden flex justify-between w-full"
+			>
+				<div onClick={() => setIsOpen(true)}>
+					<AiOutlineMenu size={30} />
+				</div>
+			</form>
+		</>
+	);
 };
 
 export default MobNav;
