@@ -82,7 +82,71 @@ const MobNav = ({ input, setInput, handleSubmit }: PropsType) => {
 						</div>
 					</Link>
 				</div>
-				<div className=""></div>
+				<div className="px-4 pb-6">
+					<div className="flex flex-col gap-4 pt-4">
+						<p className="font-semibold text-[18px]">Discover</p>
+						<Link
+							href={"/discover/now_playing"}
+							className="w-fit"
+							onClick={() => setIsOpen(false)}
+						>
+							<p
+								className={`text-textColor ml-4 cursor-pointer hover:text-white transition w-fit ${
+									selectedGenre === "now_playing"
+										? "text-white"
+										: ""
+								}`}
+							>
+								Now Playing
+							</p>
+						</Link>
+						<Link
+							href={"/discover/top_rated"}
+							className="w-fit"
+							onClick={() => setIsOpen(false)}
+						>
+							<p
+								className={`text-textColor ml-4 cursor-pointer hover:text-white transition w-fit ${
+									selectedGenre === "top_rated"
+										? "text-white"
+										: ""
+								}`}
+							>
+								Top Rated
+							</p>
+						</Link>
+						<Link
+							href={"/discover/popular"}
+							className="w-fit"
+							onClick={() => setIsOpen(false)}
+						>
+							<p
+								className={`text-textColor ml-4 cursor-pointer hover:text-white transition w-fit ${
+									selectedGenre === "popular"
+										? "text-white"
+										: ""
+								}`}
+							>
+								Popular
+							</p>
+						</Link>
+						<Link
+							href={"/discover/upcoming"}
+							className="w-fit"
+							onClick={() => setIsOpen(false)}
+						>
+							<p
+								className={`text-textColor ml-4 cursor-pointer hover:text-white transition w-fit ${
+									selectedGenre === "upcoming"
+										? "text-white"
+										: ""
+								}`}
+							>
+								Upcoming
+							</p>
+						</Link>
+					</div>
+				</div>
 			</div>
 		</>
 	);
