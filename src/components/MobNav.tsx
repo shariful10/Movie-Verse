@@ -12,6 +12,11 @@ interface PropsType {
 	handleSubmit: (e: React.FormEvent) => void;
 }
 
+interface Igenre {
+	id: string;
+	name: string;
+}
+
 const MobNav = ({ input, setInput, handleSubmit }: PropsType) => {
 	const params = useParams();
 	const searchParams = useSearchParams();
@@ -148,6 +153,27 @@ const MobNav = ({ input, setInput, handleSubmit }: PropsType) => {
 					</div>
 					<div className="flex flex-col gap-4 pt-4">
 						<p className="font-semibold text-[18px]">Genres</p>
+						{genres.map((genre: Igenre) => (
+							<Link
+								key={genre.id}
+								href={`/genres/${
+									genre.id
+								}?genre=${genre.name.toLocaleLowerCase()}`}
+								className="w-fit"
+								onClick={() => setIsOpen(false)}
+							>
+								<p
+									className={`text-textColor ml-4 cursor-pointer hover:text-white transition w-fit ${
+										genre?.name?.toLowerCase() ===
+										selectedGenre
+											? "font-semibold text-[18px]"
+											: ""
+									}`}
+								>
+									{genre.name}
+								</p>
+							</Link>
+						))}
 					</div>
 				</div>
 			</div>
