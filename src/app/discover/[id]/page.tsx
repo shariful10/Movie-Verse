@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const Discover = () => {
-  return (
-    <div>Discover</div>
-  )
+export interface Imovie {
+	id: string;
+	title: string;
+	poster_path: string;
+	release_date: string;
 }
 
-export default Discover
+const Discover = () => {
+	return <div>Discover</div>;
+};
+
+export default Discover;
