@@ -34,29 +34,11 @@ const Search = () => {
 		setSearch(id);
 		setTitle(`${id} Movies`);
 
-		switch (id) {
-			case "now_playing":
-				setTitle("Now Playing Movies");
-				break;
-			case "top_rated":
-				setTitle("Top Rated Movies");
-				break;
-			case "popular":
-				setTitle("Popular Movies");
-				break;
-			case "upcoming":
-				setTitle("Upcoming Movies");
-				break;
-			default:
-				setTitle("");
-				break;
-		}
-		setDiscover(id);
 		axios
-			.get(`${BASE_URL}/discover/movie`, {
+			.get(`${BASE_URL}/search/movie`, {
 				params: {
 					api_key: API_KEY,
-					with_genres: id,
+					query: id,
 					page,
 				},
 			})
@@ -75,12 +57,50 @@ const Search = () => {
 		} else {
 			page = `page=${currentPage + 1}`;
 		}
-		router.push(
-			`/genres/${params.id}?genre=${searchParams.get("genre")}&${page}`
-		);
+		router.push(`/search/${search}?${page}`);
 	};
 
-	return <div>Search</div>;
+	return (
+		<main
+			ref={mainRef}
+			className="bg-secondary p-8 max-h-[calc(100vh-77px)] min-h-[calc(100vh-77px)] overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-[#22222A] scroll-smooth relative scrollbar-track-primary"
+		>
+			<h2 className="text-2xl tracking-[2px]">{title}</h2>
+			{movies.length === 0 && <Loading />}
+			<div className="movie__grid grid gap-8 place-items-center mt-8">
+				{movies.map((movie: Imovie) => (
+					<Card
+						key={movie.id}
+						id={movie.id}
+						title={movie.title}
+						img={movie.poster_path}
+						releaseDate={movie.release_date}
+					/>
+				))}
+			</div>
+			<div className="flex justify-center gap-16 py-6 pt-16">
+				<button
+					onClick={() => handlePageChange("prev")}
+					className={`bg-purple-900 p-2 px-8 hover:bg-purple-950 ${
+						currentPage === 1 && "hidden"
+					}`}
+				>
+					Prev
+				</button>
+				<button
+					onClick={() => handlePageChange("next")}
+					className={`bg-purple-900 p-2 px-8 hover:bg-purple-950 ${
+						currentPage === totalPage && "hidden"
+					}`}
+				>
+					Next
+				</button>
+			</div>
+			<div className="pt-10">
+				<Footer />
+			</div>
+		</main>
+	);
 };
 
 export default Search;
