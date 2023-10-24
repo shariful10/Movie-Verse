@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { API_KEY, BASE_URL } from "@/utils/const";
+import Loading from "@/components/Loading";
 
 export interface Imovie {
 	id: string;
@@ -60,7 +61,7 @@ const Discover = () => {
 				},
 			})
 			.then((res) => {
-            console.log("res", res.data);
+				console.log("res", res.data);
 				setMovies(res.data.results);
 				setCurrentPage(res.data.page);
 				setTotalPage(res.data.total_page);
@@ -68,19 +69,25 @@ const Discover = () => {
 			.catch((err) => console.log(err));
 	}, [params.id, searchParams]);
 
-   const handlePageChange = (button: string) => {
-      let page = "";
-      if (button === "prev") {
-         page = `page=${currentPage - 1}`
-      } else {
-         page = `page=${currentPage + 1}`
-      }
-      router.push(`/discover/${discover}${page}`)
-   };
+	const handlePageChange = (button: string) => {
+		let page = "";
+		if (button === "prev") {
+			page = `page=${currentPage - 1}`;
+		} else {
+			page = `page=${currentPage + 1}`;
+		}
+		router.push(`/discover/${discover}${page}`);
+	};
 
-	return <main ref={mainRef} className="bg-primary px-10 max-h-[calc(100vh-77px)] pb-6 overflow-y-scroll scrollbar-thin scrollbar-thumb-[#22222A] scrollbar-track-primary scroll-smooth hidden sm:block">
-      <h2 className="text-2xl tracking-[2px]">{title}</h2>
-   </main>;
+	return (
+		<main
+			ref={mainRef}
+			className="bg-secondary p-8 max-h-[calc(100vh-77px)] min-h-[calc(100vh-77px)] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#22222A] scrollbar-track-primary scroll-smooth hidden sm:block"
+		>
+			<h2 className="text-2xl tracking-[2px]">{title}</h2>
+         {movies.length === 0 && <Loading />}
+		</main>
+	);
 };
 
 export default Discover;
