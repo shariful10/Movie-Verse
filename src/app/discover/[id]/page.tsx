@@ -78,7 +78,7 @@ const Discover = () => {
       router.push(`/discover/${discover}${page}`)
    };
 
-	return <div>Discover</div>;
+	return <div>Discover Now</div>;
 };
 
 export default Discover;
