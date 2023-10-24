@@ -76,6 +76,9 @@ const Sidebar = () => {
 					</p>
 				</Link>
 			</div>
+			<div className="flex flex-col gap-4 pt-4">
+				<p className="font-semibold text-[18px]">Genres</p>
+			</div>
 		</div>
 	);
 };
