@@ -22,10 +22,17 @@ const Sidebar = () => {
 			)
 			.then(({ data }) => {
 				setGenres(data.genres);
-				console.log(data.genres);
+				console.log("sidebar", data.genres);
 			})
 			.catch((err) => console.log(err));
 	}, []);
+
+	useEffect(() => {
+		if (searchParams.get("genre")) {
+			setSelectedGenres(searchParams.get("genre")?.toString()!);
+			return;
+		}
+	}, [params.id, searchParams]);
 
 	return <div>Sidebar</div>;
 };
