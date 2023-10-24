@@ -1,21 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
-import { API_KEY, BASE_URL } from "@/utils/const";
-import Loading from "@/components/Loading";
 import Card from "@/components/Card";
 import Footer from "@/components/Footer";
+import Loading from "@/components/Loading";
+import { Imovie } from "@/app/discover/[id]/page";
+import { API_KEY, BASE_URL } from "@/utils/const";
+import { useState, useRef, useEffect } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
-export interface Imovie {
-	id: string;
-	title: string;
-	poster_path: string;
-	release_date: string;
-}
-
-const Discover = () => {
+const Genres = () => {
 	const router = useRouter();
 	const params = useParams();
 	const searchParams = useSearchParams();
@@ -35,38 +29,24 @@ const Discover = () => {
 			behavior: "smooth",
 		});
 		const id = params.id.toString();
+		const genre = searchParams.get("genre");
 		const page = searchParams.get("page");
 
-		switch (id) {
-			case "now_playing":
-				setTitle("Now Playing Movies");
-				break;
-			case "top_rated":
-				setTitle("Top Rated Movies");
-				break;
-			case "popular":
-				setTitle("Popular Movies");
-				break;
-			case "upcoming":
-				setTitle("Upcoming Movies");
-				break;
-			default:
-				setTitle("");
-				break;
-		}
-      setDiscover(id);
+		setDiscover(id);
+		setTitle(`${genre} Movies`);
+
 		axios
-			.get(`${BASE_URL}/movie/${id}`, {
+			.get(`${BASE_URL}/discover/movie`, {
 				params: {
 					api_key: API_KEY,
+					with_genres: id,
 					page,
 				},
 			})
 			.then((res) => {
-				console.log("res", res.data);
 				setMovies(res.data.results);
 				setCurrentPage(res.data.page);
-				setTotalPage(res.data.total_page);
+				setTotalPage(res.data.total_pages);
 			})
 			.catch((err) => console.log(err));
 	}, [params.id, searchParams.get("page")]);
@@ -78,7 +58,9 @@ const Discover = () => {
 		} else {
 			page = `page=${currentPage + 1}`;
 		}
-		router.push(`/discover/${discover}?${page}`);
+		router.push(
+			`/genres/${params.id}?genre=${searchParams.get("genre")}&${page}`
+		);
 	};
 
 	return (
@@ -88,7 +70,7 @@ const Discover = () => {
 		>
 			<h2 className="text-2xl tracking-[2px]">{title}</h2>
 			{movies.length === 0 && <Loading />}
-			<div className="movie__grid grid gap-8 place-items-center mt-8">
+         <div className="movie__grid grid gap-8 place-items-center mt-8">
 				{movies.map((movie: Imovie) => (
 					<Card
 						key={movie.id}
@@ -99,7 +81,7 @@ const Discover = () => {
 					/>
 				))}
 			</div>
-			<div className="flex justify-center gap-16 py-6 pt-16">
+         <div className="flex justify-center gap-16 py-6 pt-16">
 				<button
             onClick={() => handlePageChange("prev")}
 					className={`bg-purple-900 p-2 px-8 hover:bg-purple-950 ${
@@ -124,4 +106,4 @@ const Discover = () => {
 	);
 };
 
-export default Discover;
+export default Genres;
