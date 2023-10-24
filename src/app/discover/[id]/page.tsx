@@ -78,7 +78,9 @@ const Discover = () => {
       router.push(`/discover/${discover}${page}`)
    };
 
-	return <div>Discover Now</div>;
+	return <main ref={mainRef} className="bg-primary px-10 max-h-[calc(100vh-77px)] pb-6 overflow-y-scroll scrollbar-thin scrollbar-thumb-[#22222A] scrollbar-track-primary scroll-smooth hidden sm:block">
+      <h2 className="text-2xl tracking-[2px]">{title}</h2>
+   </main>;
 };
 
 export default Discover;
