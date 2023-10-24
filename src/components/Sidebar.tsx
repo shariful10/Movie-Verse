@@ -29,14 +29,15 @@ const Sidebar = () => {
 	}, []);
 
 	useEffect(() => {
-		if (searchParams.get("genre")) {
-			setSelectedGenre(searchParams.get("genre")?.toString()!);
+		if (searchParams.get("genere")) {
+			setSelectedGenre(searchParams.get("genere")!);
 			return;
 		}
+		setSelectedGenre(params.id.toString());
 	}, [params.id, searchParams]);
 
 	return (
-		<div className="bg-primary px-10 max-h-[calc(100vh-77px)] pb-6 overflow-y-scroll scrollbar-thin scrollbar-thumb-[#22222A] scrollbar-track-primary hidden sm:block">
+		<div className="bg-primary px-10 max-h-[calc(100vh-77px)] pb-6 overflow-y-scroll scrollbar-thin scrollbar-thumb-[#22222A] scrollbar-track-primary scroll-smooth hidden sm:block">
 			<div className="flex flex-col gap-4 pt-4">
 				<p className="font-semibold text-[18px]">Discover</p>
 				<Link href={"/discover/now_playing"}>
