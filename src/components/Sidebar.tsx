@@ -36,7 +36,7 @@ const Sidebar = () => {
 	}, [params.id, searchParams]);
 
 	return (
-		<div className="bg-primary px-10 max-h-[calc(100vh-77px)] pb-6 overflow-y-scroll scrollbar-thumb-[#22222A] scrollbar-track-primary hidden sm:block">
+		<div className="bg-primary px-10 max-h-[calc(100vh-77px)] pb-6 overflow-y-scroll scrollbar-thin scrollbar-thumb-[#22222A] scrollbar-track-primary hidden sm:block">
 			<div className="flex flex-col gap-4 pt-4">
 				<p className="font-semibold text-[18px]">Discover</p>
 				<Link href={"/discover/now_playing"}>
@@ -78,6 +78,24 @@ const Sidebar = () => {
 			</div>
 			<div className="flex flex-col gap-4 pt-4">
 				<p className="font-semibold text-[18px]">Genres</p>
+				{genres.map((genre: Igenre) => (
+					<Link
+						key={genre.id}
+						href={`/genres/${
+							genre.id
+						}?genre=${genre.name.toLowerCase()}`}
+					>
+						<p
+							className={`text-textColor ml-4 cursor-pointer hover:text-white transition w-fit ${
+								genre.name.toLowerCase() === selectedGenre
+									? "font-semibold text-[18px]"
+									: ""
+							}`}
+						>
+							{genre.name}
+						</p>
+					</Link>
+				))}
 			</div>
 		</div>
 	);
