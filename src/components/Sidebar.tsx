@@ -34,7 +34,11 @@ const Sidebar = () => {
 		}
 	}, [params.id, searchParams]);
 
-	return <div>Sidebar</div>;
+	return <div className="bg-primary px-10 max-h-[calc(100vh-77px)] pb-6 overflow-y-scroll scrollbar-thumb-[#22222A] scrollbar-track-primary hidden sm:block">
+		<div className="flex flex-col gap-4 pt-4">
+			<p className="font-semibold text-[18px]">Discover</p>
+		</div>
+	</div>;
 };
 
 export default Sidebar;
