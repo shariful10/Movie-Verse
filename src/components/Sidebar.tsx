@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "next/navigation";
 import axios from "axios";
-import { API_KEY, BASE_URL } from "@/utils/const";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { API_KEY, BASE_URL } from "@/utils/const";
+import { useParams, useSearchParams } from "next/navigation";
 
 const Sidebar = () => {
 	const params = useParams();
