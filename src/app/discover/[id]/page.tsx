@@ -4,6 +4,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { API_KEY, BASE_URL } from "@/utils/const";
 import Loading from "@/components/Loading";
+import Card from "@/components/Card";
 
 export interface Imovie {
 	id: string;
@@ -82,10 +83,21 @@ const Discover = () => {
 	return (
 		<main
 			ref={mainRef}
-			className="bg-secondary p-8 max-h-[calc(100vh-77px)] min-h-[calc(100vh-77px)] overflow-y-scroll scrollbar-thin scrollbar-thumb-[#22222A] scrollbar-track-primary scroll-smooth hidden sm:block"
+			className="bg-secondary p-8 max-h-[calc(100vh-77px)] min-h-[calc(100vh-77px)] overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-[#22222A] scroll-smooth relative scrollbar-track-primary"
 		>
 			<h2 className="text-2xl tracking-[2px]">{title}</h2>
-         {movies.length === 0 && <Loading />}
+			{movies.length === 0 && <Loading />}
+			<div className="movie__grid grid gap-8 place-items-center mt-8">
+				{movies.map((movie: Imovie) => (
+					<Card
+						key={movie.id}
+						id={movie.id}
+						title={movie.title}
+						img={movie.poster_path}
+						releaseDate={movie.release_date}
+					/>
+				))}
+			</div>
 		</main>
 	);
 };

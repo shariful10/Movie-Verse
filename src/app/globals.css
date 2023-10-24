@@ -8,6 +8,10 @@
 		overflow: hidden;
 		-webkit-tap-highlight-color: transparent;
 	}
+
+   .movie__grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   }
 }
 
 /* <==<<=== Custom CSS Start ===>>==> */
