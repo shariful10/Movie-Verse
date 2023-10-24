@@ -60,12 +60,23 @@ const Discover = () => {
 				},
 			})
 			.then((res) => {
+            console.log("res", res.data);
 				setMovies(res.data.results);
 				setCurrentPage(res.data.page);
 				setTotalPage(res.data.total_page);
 			})
 			.catch((err) => console.log(err));
 	}, [params.id, searchParams]);
+
+   const handlePageChange = (button: string) => {
+      let page = "";
+      if (button === "prev") {
+         page = `page=${currentPage - 1}`
+      } else {
+         page = `page=${currentPage + 1}`
+      }
+      router.push(`/discover/${discover}${page}`)
+   };
 
 	return <div>Discover</div>;
 };
