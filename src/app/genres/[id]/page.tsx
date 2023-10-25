@@ -29,8 +29,8 @@ const Genres = () => {
 			behavior: "smooth",
 		});
 		const id = params.id.toString();
-		const genre = searchParams.get("genre");
 		const page = searchParams.get("page");
+		const genre = searchParams.get("genre");
 
 		setDiscover(id);
 		setTitle(`${genre} Movies`);
@@ -68,7 +68,7 @@ const Genres = () => {
 			ref={mainRef}
 			className="bg-secondary p-8 max-h-[calc(100vh-77px)] min-h-[calc(100vh-77px)] overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-[#22222A] scroll-smooth relative scrollbar-track-primary"
 		>
-			<h2 className="text-2xl tracking-[2px]">{title}</h2>
+			<h2 className="text-2xl tracking-[2px] capitalize">{title}</h2>
 			{movies.length === 0 && <Loading />}
          <div className="movie__grid grid gap-8 place-items-center mt-8">
 				{movies.map((movie: Imovie) => (
