@@ -173,16 +173,23 @@ const MovieDetails = () => {
 							<div>Runtime: {movie?.runtime}</div>
 							<div>Rating: {movie?.vote_avarage} ⭐</div>
 						</div>
-                  <div className="pt-14 space-y-2 pr-4">
-                     <div>OVERVIEW:</div>
-                     <div>{movie?.overview}</div>
-                  </div>
-                  {/* <div onclick={} className="inline-block pt-6 cursor-pointer">
-                     .
-                  </div> */}
+						<div className="pt-14 space-y-2 pr-4">
+							<div>OVERVIEW:</div>
+							<div>{movie?.overview}</div>
+						</div>
+						<div
+							onClick={startPlayer}
+							className="inline-block pt-6 cursor-pointer"
+						>
+							<div className="flex gap-2 items-center bg-white text-black px-4 py-2 mb-6 hover:bg-[#B4B4B4]">
+								<BsPlayFill size={24} />
+								Watch Trailer
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+         {/* <==<<=== React Player ===>>==> */}
 			<div className="pt-10">
 				<Footer />
 			</div>
