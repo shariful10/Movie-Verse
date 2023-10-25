@@ -2,11 +2,11 @@
 "use client";
 import axios from "axios";
 import dynamic from "next/dynamic";
+import Genres from "@/components/Genres";
 import Footer from "@/components/Footer";
 import { IoMdClose } from "react-icons/io";
 import Loading from "@/components/Loading";
 import { BsPlayFill } from "react-icons/bs";
-import Genres from './../../../components/Genres';
 import { API_KEY, BASE_IMG_URL } from "@/utils/const";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -121,6 +121,15 @@ const MovieDetails = () => {
 		setTrailer(trailerURL);
 	}, [movie]);
 
+	const startPlayer = () => {
+		mainRef?.current?.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: "smooth",
+		});
+		setShowPlayer(true);
+	};
+
 	return (
 		<main
 			ref={mainRef}
@@ -146,15 +155,23 @@ const MovieDetails = () => {
 							{movie?.title}
 						</div>
 						<div className="flex gap-4 flex-wrap">
-							{movie?.genres?.map((genre, index) => {
+							{movie?.genres?.map((genre, index) => (
 								<Genres
 									key={genre.id}
 									index={index}
 									length={movie?.genres?.length}
 									name={genre.name}
 									id={genre.id}
-								/>;
-							})}
+								/>
+							))}
+						</div>
+						<div className="flex flex-col md:flex-row gap-2 md:gap-6">
+							<div>
+								Language: {movie?.original_language?.toUpperCase()}
+							</div>
+							<div>Release: {movie?.release_date}</div>
+							<div>Runtime: {movie?.runtime}</div>
+							<div>Rating: {movie?.vote_avarage} ⭐</div>
 						</div>
 					</div>
 				</div>
