@@ -173,6 +173,13 @@ const MovieDetails = () => {
 							<div>Runtime: {movie?.runtime}</div>
 							<div>Rating: {movie?.vote_avarage} ⭐</div>
 						</div>
+                  <div className="pt-14 space-y-2 pr-4">
+                     <div>OVERVIEW:</div>
+                     <div>{movie?.overview}</div>
+                  </div>
+                  {/* <div onclick={} className="inline-block pt-6 cursor-pointer">
+                     .
+                  </div> */}
 					</div>
 				</div>
 			</div>
