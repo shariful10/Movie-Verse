@@ -104,7 +104,6 @@ const MovieDetails = () => {
 				`https://api.themoviedb.org/3/movie/${params.id}?api_key=${API_KEY}&append_to_response=videos`
 			)
 			.then((res) => {
-				console.log(res.data);
 				setMovie(res.data);
 			});
 	}, [params.id]);
@@ -115,11 +114,11 @@ const MovieDetails = () => {
 		);
 
 		const trailerURL = `https://www.youtube.com/watch?v=${
-			movie?.videos?.results[trailerIndex!]
-		}?.key`;
+			movie?.videos?.results[trailerIndex!]?.key
+		}`;
 
 		setTrailer(trailerURL);
-	}, [movie]);
+	}, [movie?.videos?.results]);
 
 	const startPlayer = () => {
 		mainRef?.current?.scrollTo({
@@ -181,15 +180,40 @@ const MovieDetails = () => {
 							onClick={startPlayer}
 							className="inline-block pt-6 cursor-pointer"
 						>
-							<div className="flex gap-2 items-center bg-white text-black px-4 py-2 mb-6 hover:bg-[#B4B4B4]">
+							<button className="flex gap-2 items-center bg-white text-black px-4 py-2 mb-6 hover:bg-[#B4B4B4]">
 								<BsPlayFill size={24} />
 								Watch Trailer
-							</div>
+							</button>
 						</div>
 					</div>
 				</div>
 			</div>
-         {/* <==<<=== React Player ===>>==> */}
+			{/* <==<<=== React Player ===>>==> */}
+			<div
+				className={`absolute top-3 inset-x-[7%] md:inset-x-[13%] rounded overflow-hidden transition delay-1000 ${
+					showPlayer ? "opacity-100 z-50" : "opacity-0 -z-10"
+				}`}
+			>
+				<div className="flex items-center justify-between bg-black text-[#F9F9F9] p-3.5">
+					<span className="font-semibold">Playing Trailer</span>
+					<div
+						onClick={() => setShowPlayer(false)}
+						className="cursor-pointer w-8 h-8 flex justify-center items-center rounded-lg opacity-50 hover:opacity-75 hover:bg-[#0F0F0F]"
+					>
+						<IoMdClose className="h-5" />
+					</div>
+				</div>
+				<div className="relative pt-[56.2%]">
+					<ReactPlayer
+						url={trailer}
+						width="100%"
+						height="100%"
+						style={{ position: "absolute", top: "0", left: "0" }}
+						controls={true}
+						playing={showPlayer}
+					/>
+				</div>
+			</div>
 			<div className="pt-10">
 				<Footer />
 			</div>

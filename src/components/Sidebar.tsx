@@ -23,7 +23,6 @@ const Sidebar = () => {
 			)
 			.then(({ data }) => {
 				setGenres(data.genres);
-				console.log("sidebar", data.genres);
 			})
 			.catch((err) => console.log(err));
 	}, []);
