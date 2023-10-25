@@ -2,13 +2,14 @@
 "use client";
 import axios from "axios";
 import dynamic from "next/dynamic";
-import { API_KEY, BASE_IMG_URL } from "@/utils/const";
+import Footer from "@/components/Footer";
 import { IoMdClose } from "react-icons/io";
+import Loading from "@/components/Loading";
 import { BsPlayFill } from "react-icons/bs";
+import Genres from './../../../components/Genres';
+import { API_KEY, BASE_IMG_URL } from "@/utils/const";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
-import Footer from "@/components/Footer";
-import Loading from "@/components/Loading";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
@@ -140,11 +141,22 @@ const MovieDetails = () => {
 							alt={movie?.title}
 						/>
 					</div>
-               <div className="space-y-6 md:space-y-3 text-textColor">
-                  <div className="uppercase text-[26px] md:text-[34px] font-medium pr-4 text-white">
-                     {movie?.title}
-                  </div>
-               </div>
+					<div className="space-y-6 md:space-y-3 text-textColor">
+						<div className="uppercase text-[26px] md:text-[34px] font-medium pr-4 text-white">
+							{movie?.title}
+						</div>
+						<div className="flex gap-4 flex-wrap">
+							{movie?.genres?.map((genre, index) => {
+								<Genres
+									key={genre.id}
+									index={index}
+									length={movie?.genres?.length}
+									name={genre.name}
+									id={genre.id}
+								/>;
+							})}
+						</div>
+					</div>
 				</div>
 			</div>
 			<div className="pt-10">
