@@ -132,7 +132,7 @@ const MovieDetails = () => {
 	return (
 		<main
 			ref={mainRef}
-			className="bg-secondary p-8 max-h-[calc(100vh-77px)] min-h-[calc(100vh-77px)] overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-[#22222A] scroll-smooth relative scrollbar-track-primary"
+			className="bg-secondary px-8 pt-8 overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-[#22222A] scroll-smooth relative scrollbar-track-primary"
 		>
 			{movie === null && <Loading />}
 			<div
@@ -214,7 +214,7 @@ const MovieDetails = () => {
 					/>
 				</div>
 			</div>
-			<div className="pt-10">
+			<div className="sm:mt-1 md:mt-[10px] lg:mt-5 xl:mt-64 2xl:mt-72">
 				<Footer />
 			</div>
 		</main>
