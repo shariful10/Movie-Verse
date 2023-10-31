@@ -47,13 +47,9 @@ To get started with Evolve Gym, follow these steps:
 
 ---
 
-### Sign Up
-
-Create your MovieVerse account by visiting our website [here](https://movie-verse-eight.vercel.app/discover/now_playing). It's quick, free, and opens up a world of cinematic adventures.
-
 ### Start Watching
 
-1. Log in to your MovieVerse account.
+1. visiting our website [here](https://movie-verse-eight.vercel.app/discover/now_playing). It's quick, free, and opens up a world of cinematic adventures.
 2. Browse through our extensive movie library or explore curated collections.
 3. Click on a movie to view its details, including synopsis, cast, and user ratings.
 4. Hit play and enjoy your chosen film.
